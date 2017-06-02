@@ -34,7 +34,7 @@ class PolyTreeNode
   def dfs(target_value)
     return self if self.value == target_value
     # ex. of a case when we are passed a Proc:
-    # return self if Proc.call(self) == true 
+    # return self if Proc.call(self) == true
     self.children.each do |child|
       search_result = child.dfs(target_value)
       return search_result if search_result
@@ -47,11 +47,11 @@ class PolyTreeNode
     queue = [self]
     until queue.empty?
       current_node = queue.shift
-       if current_node.value == target_value
-         return current_node
-       else
-         queue.concat current_node.children
-       end
+        if current_node.value == target_value
+          return current_node
+        else
+          queue.concat current_node.children
+        end
     end
 
     nil
