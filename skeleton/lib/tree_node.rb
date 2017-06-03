@@ -3,7 +3,7 @@ require 'byebug'
 class PolyTreeNode
   attr_accessor :parent, :children, :value
 
-  def initialize(value)
+  def initialize(value = [0,0])
     @parent = nil
     @children = []
     @value = value
@@ -23,7 +23,7 @@ class PolyTreeNode
   end
 
   def add_child(child)
-    child.parent= self
+    child.parent = self
   end
 
   def remove_child(child)
@@ -42,8 +42,8 @@ class PolyTreeNode
     nil
   end
 
-  def bfs(target_value)
-    return self if target_value == self
+  def bfs(&blk)
+    return self if blk.call(self)
     queue = [self]
     until queue.empty?
       current_node = queue.shift
@@ -56,4 +56,6 @@ class PolyTreeNode
 
     nil
   end
+
+
 end
